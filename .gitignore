@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Generated pipeline artifacts
+data/processed/*
+models/*
+metrics/*
+mlruns/*
+!data/processed/.gitkeep
+!models/.gitkeep
+!metrics/.gitkeep
+!mlruns/.gitkeep
+
+# Local tooling
+.dvc/cache/
+.dvc/tmp/
+.idea/
+.vscode/
+
