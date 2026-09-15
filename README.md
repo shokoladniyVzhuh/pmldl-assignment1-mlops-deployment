@@ -8,7 +8,9 @@ This project implements an automated MLOps pipeline with three stages:
 
 ## Initial project decision
 
-The first implementation will use a small tabular classification dataset and a simple scikit-learn model. The exact dataset and target column will be documented here before Stage 1 implementation.
+The project uses the Palmer Penguins dataset and solves a multiclass classification problem. The target column is `species`.
+
+Dataset source: [palmerpenguins](https://github.com/allisonhorst/palmerpenguins)
 
 Planned tools:
 
@@ -31,13 +33,29 @@ models/              trained model artifacts
 metrics/             evaluation metrics
 ```
 
+## Stage 1: data engineering
+
+The data preparation stage loads `data/raw/penguins.csv`, removes duplicates and rows with missing values, filters numeric outliers with the IQR method, and creates stratified train and test datasets.
+
+Run the stage:
+
+```bash
+dvc repro
+```
+
+Outputs:
+
+```text
+data/processed/train.csv
+data/processed/test.csv
+```
+
 ## Status
 
 - [x] Initial directory structure
 - [x] Dependency list
-- [ ] Dataset selection
-- [ ] Stage 1: data engineering
+- [x] Dataset selection
+- [x] Stage 1: data engineering
 - [ ] Stage 2: model engineering
 - [ ] Stage 3: deployment
 - [ ] Pipeline automation
-

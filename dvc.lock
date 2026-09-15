@@ -1,0 +1,29 @@
+schema: '2.0'
+stages:
+  prepare_data:
+    cmd: python code/datasets/prepare_data.py --input data/raw/penguins.csv 
+      --train-output data/processed/train.csv --test-output 
+      data/processed/test.csv --test-size 0.2 --random-state 42 --iqr-factor 1.5
+    deps:
+    - path: code/datasets/prepare_data.py
+      hash: md5
+      md5: 61aa4cd3d712563237fa836fc473cce6
+      size: 2682
+    - path: data/raw/penguins.csv
+      hash: md5
+      md5: a06a0210251465a86fb970018292304d
+      size: 15241
+    params:
+      params.yaml:
+        prepare.iqr_factor: 1.5
+        prepare.random_state: 42
+        prepare.test_size: 0.2
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: dbbec770ea4b159f7622e41280015999
+      size: 3350
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 4d446ae5b93feb6a11676a5f4040f4be
+      size: 13019

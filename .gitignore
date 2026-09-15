@@ -4,7 +4,6 @@ __pycache__/
 venv/
 .env
 
-# Generated pipeline artifacts
 data/processed/*
 models/*
 metrics/*
@@ -14,9 +13,7 @@ mlruns/*
 !metrics/.gitkeep
 !mlruns/.gitkeep
 
-# Local tooling
 .dvc/cache/
 .dvc/tmp/
 .idea/
 .vscode/
-
