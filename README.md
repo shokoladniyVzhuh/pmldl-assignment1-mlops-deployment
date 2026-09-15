@@ -50,12 +50,37 @@ data/processed/train.csv
 data/processed/test.csv
 ```
 
+## Stage 2: model engineering
+
+The model training stage applies standard scaling to numeric features, one-hot encoding to categorical features, and trains a logistic regression classifier. The complete preprocessing and model pipeline is saved as a single artifact.
+
+Run the complete pipeline:
+
+```bash
+dvc repro
+```
+
+Outputs:
+
+```text
+models/model.pkl
+metrics/metrics.json
+mlruns/
+mlflow.db
+```
+
+Open the MLflow interface:
+
+```bash
+mlflow ui --backend-store-uri sqlite:///mlflow.db
+```
+
 ## Status
 
 - [x] Initial directory structure
 - [x] Dependency list
 - [x] Dataset selection
 - [x] Stage 1: data engineering
-- [ ] Stage 2: model engineering
+- [x] Stage 2: model engineering
 - [ ] Stage 3: deployment
 - [ ] Pipeline automation

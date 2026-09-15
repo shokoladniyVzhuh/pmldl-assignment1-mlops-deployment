@@ -11,3 +11,18 @@ stages:
     outs:
       - data/processed/train.csv
       - data/processed/test.csv
+  train_model:
+    cmd: python code/models/train_model.py --train-data data/processed/train.csv --test-data data/processed/test.csv --model-output models/model.pkl --metrics-output metrics/metrics.json --mlflow-directory mlruns --mlflow-database mlflow.db --experiment-name ${train.experiment_name} --random-state ${train.random_state} --max-iter ${train.max_iter} --c ${train.c}
+    deps:
+      - code/models/train_model.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+    params:
+      - train.random_state
+      - train.max_iter
+      - train.c
+      - train.experiment_name
+    outs:
+      - models/model.pkl
+    metrics:
+      - metrics/metrics.json

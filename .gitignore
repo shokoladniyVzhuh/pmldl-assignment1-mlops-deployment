@@ -8,6 +8,7 @@ data/processed/*
 models/*
 metrics/*
 mlruns/*
+mlflow.db
 !data/processed/.gitkeep
 !models/.gitkeep
 !metrics/.gitkeep

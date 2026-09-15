@@ -2,3 +2,8 @@ prepare:
   test_size: 0.2
   random_state: 42
   iqr_factor: 1.5
+train:
+  random_state: 42
+  max_iter: 1000
+  c: 1.0
+  experiment_name: penguins-classification

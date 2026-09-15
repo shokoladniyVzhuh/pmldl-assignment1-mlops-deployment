@@ -27,3 +27,37 @@ stages:
       hash: md5
       md5: 4d446ae5b93feb6a11676a5f4040f4be
       size: 13019
+  train_model:
+    cmd: python code/models/train_model.py --train-data data/processed/train.csv
+      --test-data data/processed/test.csv --model-output models/model.pkl 
+      --metrics-output metrics/metrics.json --mlflow-directory mlruns 
+      --mlflow-database mlflow.db --experiment-name penguins-classification 
+      --random-state 42 --max-iter 1000 --c 1.0
+    deps:
+    - path: code/models/train_model.py
+      hash: md5
+      md5: 329ac1ec89c8c4279f3bce590b22abd0
+      size: 5036
+    - path: data/processed/test.csv
+      hash: md5
+      md5: dbbec770ea4b159f7622e41280015999
+      size: 3350
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 4d446ae5b93feb6a11676a5f4040f4be
+      size: 13019
+    params:
+      params.yaml:
+        train.c: 1.0
+        train.experiment_name: penguins-classification
+        train.max_iter: 1000
+        train.random_state: 42
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: 1790e6427ff2f421bdfbfba63b7ca2b3
+      size: 149
+    - path: models/model.pkl
+      hash: md5
+      md5: 6ec75ccb3d555a879b39196a4a5a663f
+      size: 4017
