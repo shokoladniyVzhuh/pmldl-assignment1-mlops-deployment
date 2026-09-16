@@ -16,5 +16,9 @@ mlflow.db
 
 .dvc/cache/
 .dvc/tmp/
+.dvc/site-cache/
+logs/*
+!logs/.gitkeep
+.pipeline.lock
 .idea/
 .vscode/

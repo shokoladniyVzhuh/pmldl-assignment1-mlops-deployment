@@ -111,6 +111,40 @@ Stop the services:
 docker compose -f code/deployment/docker-compose.yml down
 ```
 
+## Pipeline automation
+
+Create the local configuration:
+
+```bash
+cp .env.example .env
+```
+
+Run the complete pipeline manually:
+
+```bash
+./run_pipeline.sh
+```
+
+The script prepares the data, trains the model when inputs change, rebuilds the Docker images, starts the API and application, and writes execution logs to `logs/pipeline.log`. Concurrent runs are prevented with a lock file.
+
+Install the five-minute cron schedule:
+
+```bash
+./services/cron/install.sh
+```
+
+Check the installed schedule:
+
+```bash
+crontab -l
+```
+
+Remove the schedule:
+
+```bash
+./services/cron/uninstall.sh
+```
+
 ## Status
 
 - [x] Initial directory structure
@@ -119,4 +153,4 @@ docker compose -f code/deployment/docker-compose.yml down
 - [x] Stage 1: data engineering
 - [x] Stage 2: model engineering
 - [x] Stage 3: deployment
-- [ ] Pipeline automation
+- [x] Pipeline automation
