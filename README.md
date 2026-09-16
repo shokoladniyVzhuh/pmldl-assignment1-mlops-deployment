@@ -75,6 +75,42 @@ Open the MLflow interface:
 mlflow ui --backend-store-uri sqlite:///mlflow.db
 ```
 
+## Stage 3: deployment
+
+The trained model is served by a FastAPI service. A separate Streamlit application sends prediction requests to the API. Both services run in separate Docker containers.
+
+Create the model before building the containers:
+
+```bash
+dvc repro
+```
+
+Build and start the services:
+
+```bash
+docker compose -f code/deployment/docker-compose.yml up --build -d
+```
+
+Custom host ports can be used when the defaults are occupied:
+
+```bash
+API_PORT=18000 APP_PORT=18501 docker compose -f code/deployment/docker-compose.yml up --build -d
+```
+
+Available services:
+
+```text
+API: http://localhost:8000
+Swagger: http://localhost:8000/docs
+App: http://localhost:8501
+```
+
+Stop the services:
+
+```bash
+docker compose -f code/deployment/docker-compose.yml down
+```
+
 ## Status
 
 - [x] Initial directory structure
@@ -82,5 +118,5 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db
 - [x] Dataset selection
 - [x] Stage 1: data engineering
 - [x] Stage 2: model engineering
-- [ ] Stage 3: deployment
+- [x] Stage 3: deployment
 - [ ] Pipeline automation
